@@ -4,22 +4,25 @@ const path = require("path");
 
 const app = express();
 
+// set method allows us to set certain options for this express app.
+// 2 options --> 1: view engine (tell express we want to use special engine)
+// 2: ejs (what view engine template called)
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
 
 app.get("/", function (req, res) {
-  const htmlFile = path.join(__dirname, "views", "index.html");
-  res.sendFile(htmlFile);
+  res.render("index");
 });
 
 app.get("/restaurants", function (req, res) {
-  const htmlFile = path.join(__dirname, "views", "restaurants.html");
-  res.sendFile(htmlFile);
+  res.render("restaurants");
 });
 
 app.get("/recommend", function (req, res) {
-  const htmlFile = path.join(__dirname, "views", "recommend.html");
-  res.sendFile(htmlFile);
+  res.render("recommend");
 });
 
 app.post("/recommend", function (req, res) {
@@ -36,17 +39,14 @@ app.post("/recommend", function (req, res) {
 
   // do redirect
   res.redirect("/confirm");
-  
 });
 
 app.get("/confirm", function (req, res) {
-  const htmlFile = path.join(__dirname, "views", "confirm.html");
-  res.sendFile(htmlFile);
+  res.render("confirm");
 });
 
 app.get("/about", function (req, res) {
-  const htmlFile = path.join(__dirname, "views", "about.html");
-  res.sendFile(htmlFile);
+  res.render("about");
 });
 
 app.listen(3000);
