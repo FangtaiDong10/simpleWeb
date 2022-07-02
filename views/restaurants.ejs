@@ -35,9 +35,9 @@
       <p>We found <%= numberOfRestaurants %> restaurants.</p>
 
       <ul id="restaurants-list">
-        <% for (const restaurant of restaurants) { %> 
-          <%- include('includes/restaurants/restaurant-item', {restaurant: restaurant}) %>
-        <% } %>
+        <% for (const restaurant of restaurants) { %> <%-
+        include('includes/restaurants/restaurant-item', {restaurant:
+        restaurant}) %> <% } %>
       </ul>
 
       <% } %>
